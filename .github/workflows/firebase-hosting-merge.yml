@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
-      VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
+      VITE_FIREBASE_KEY: '${{secrets.VITE_FIREBASE_KEY}}'
     steps:
       - uses: actions/checkout@v4
       - run: npm install && npm run build
