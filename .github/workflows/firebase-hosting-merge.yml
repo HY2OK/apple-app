@@ -9,7 +9,9 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    env: API_URL: '${{secrets.API_URL}}'
+    env:
+      FIREBASE_KEY: '${{secrets.FIREBASE_KEY}}'
+      TMDB_KEY: '${{secrets.TMDB_KEY}}'
     steps:
       - uses: actions/checkout@v4
       - run: npm install && npm run build
