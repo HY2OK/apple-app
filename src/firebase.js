@@ -9,7 +9,7 @@ import { initializeApp } from 'firebase/app'
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   // eslint-disable-next-line no-undef
-  apiKey: process.env.FIREBASE_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: 'test-a42de.firebaseapp.com',
   projectId: 'test-a42de',
   storageBucket: 'test-a42de.appspot.com',
