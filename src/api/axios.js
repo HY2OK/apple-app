@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { apiKey } from './key'
+// import { apiKey } from './key'
 
 const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
   params: {
-    api_key: `${apiKey}`,
+    // eslint-disable-next-line no-undef
+    api_key: `${process.env.TMDB_KEY}`,
     language: 'ko-KR',
   },
 })
