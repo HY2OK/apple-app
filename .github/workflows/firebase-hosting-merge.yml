@@ -9,9 +9,9 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    env:
-      VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
-      VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
+    # env:
+    #   VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
+    #   VITE_TMDB_KEY: '${{secrets.VITE_TMDB_KEY}}'
     steps:
       - uses: actions/checkout@v4
       - run: npm install && npm run build
