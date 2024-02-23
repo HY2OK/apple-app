@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import './MovieModal.css'
 import { imageBasePath } from '../../constant'
 import useOnclickOutside from '../../hooks/useOnClickOutside'

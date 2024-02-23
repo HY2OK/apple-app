@@ -69,7 +69,7 @@ const Row = ({ title, id, fetchUrl }) => {
               <Wrap>
                 <img
                   className="row__poster"
-                  src={`https:image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                   alt={movie.name}
                   onClick={() => handleClick(movie)}
                 />
