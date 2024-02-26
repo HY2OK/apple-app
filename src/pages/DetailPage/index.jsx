@@ -19,8 +19,17 @@ const DetailPage = () => {
         },
       })
 
+      const sortedByVote = [...response2.data.results].sort(
+        (cur, nxt) => nxt.vote_average - cur.vote_average,
+      )
+      console.log(response2.data.results)
+      console.log(sortedByVote)
+      // const newRes = response2.data.sort((cur, nxt) => {
+      //   console.log(cur, nxt)
+      // })
+
       setMovie(response.data)
-      setRecommendMovie(response2.data)
+      setRecommendMovie(sortedByVote)
     }
     fetchData()
   }, [movieId])
@@ -46,7 +55,7 @@ const DetailPage = () => {
             <Overview>{turncate(movie.overview, 100)}</Overview>
           </Footer>
         </Banner>
-        <Recommend movieList={recommendMovie.results} />
+        <Recommend movieList={recommendMovie} />
       </section>
     )
   }

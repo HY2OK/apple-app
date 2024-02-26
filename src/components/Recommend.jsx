@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 const Recommend = ({ movieList }) => {
   const [isHovered, setIsHovered] = useState(null)
   const navigate = useNavigate()
-  console.log(movieList)
 
   return (
     <>
