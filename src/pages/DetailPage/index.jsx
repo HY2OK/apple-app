@@ -22,11 +22,6 @@ const DetailPage = () => {
       const sortedByVote = [...response2.data.results].sort(
         (cur, nxt) => nxt.vote_average - cur.vote_average,
       )
-      console.log(response2.data.results)
-      console.log(sortedByVote)
-      // const newRes = response2.data.sort((cur, nxt) => {
-      //   console.log(cur, nxt)
-      // })
 
       setMovie(response.data)
       setRecommendMovie(sortedByVote)
