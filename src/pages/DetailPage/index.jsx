@@ -33,7 +33,12 @@ const DetailPage = () => {
     return str?.length > n ? str.substring(0, n) + '...' : str
   }
 
-  if (!movie) return null
+  if (!movie)
+    return (
+      <section style={{ minHeight: '100vh', marginTop: '70px', backgroundColor: '#000' }}>
+        loading...
+      </section>
+    )
   else {
     const url = `${imageBasePath}${movie.backdrop_path}`
     return (
