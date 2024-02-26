@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 import './SearchPage.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDebounce } from '../../hooks/useDebounce'
 
 const SearchPage = () => {
+  // eslint-disable-next-line no-unused-vars
   const location = useLocation()
   const useQuery = () => new URLSearchParams(useLocation().search)
   let query = useQuery()
