@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const LoginPage = () => {
@@ -6,7 +5,7 @@ const LoginPage = () => {
     <Container>
       <Center>
         <Logo src="/images/apple-gray-logo.svg" alt="로고" />
-        <HeadingText>Sgin in with your Apple ID</HeadingText>
+        <HeadingText>Sign in with your Apple ID</HeadingText>
         <Description>You will be signed in to Apple TV and Apple Music.</Description>
         <Button>Apple ID</Button>
         <LinkText>Create New Apple Id</LinkText>
