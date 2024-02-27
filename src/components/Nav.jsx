@@ -10,6 +10,7 @@ import {
   signOut,
 } from 'firebase/auth'
 import app from '../firebase'
+import SignModal from './SignModal/SignModal'
 
 const initialUserData = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData'))
@@ -19,6 +20,7 @@ const Nav = () => {
   const [show, setShow] = useState('false')
   const [searchValue, setSearchValue] = useState('')
   const [userData, setUserData] = useState(initialUserData)
+  const [modal, setModal] = useState(false)
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -34,13 +36,14 @@ const Nav = () => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const authChange = onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate('/')
       } else if (user && pathname === '/') {
         navigate('/main')
       }
     })
+    return () => authChange()
   }, [auth, navigate, pathname])
 
   useEffect(() => {
@@ -58,6 +61,7 @@ const Nav = () => {
   const handleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log(result.user)
         setUserData(result.user)
         localStorage.setItem('userData', JSON.stringify(result.user))
       })
@@ -78,37 +82,47 @@ const Nav = () => {
   }
 
   return (
-    <NavWrapper show={show}>
-      <Logo>
-        <img
-          src="/images/apple-logo.png"
-          alt="logo"
-          width={`70px`}
-          onClick={() => (window.location.href = '/')}
-        />
-      </Logo>
+    <>
+      <NavWrapper show={show}>
+        <Logo>
+          <img
+            src="/images/apple-logo.png"
+            alt="logo"
+            width={`70px`}
+            onClick={() => (window.location.href = '/')}
+          />
+        </Logo>
 
-      {pathname === '/' ? (
-        <Login onClick={handleAuth}>로그인</Login>
-      ) : (
-        <Input
-          type="text"
-          value={searchValue}
-          onChange={(e) => handleChange(e)}
-          className="nav__input"
-          placeholder="영화를 검색해주세요."
-        />
-      )}
+        {pathname === '/' ? (
+          <Login onClick={() => setModal(true)}>로그인</Login>
+        ) : (
+          <Input
+            type="text"
+            value={searchValue}
+            onChange={(e) => handleChange(e)}
+            className="nav__input"
+            placeholder="영화를 검색해주세요."
+          />
+        )}
 
-      {pathname !== '/' ? (
-        <SignOut>
-          <UserImg src={userData.photoURL} alt={userData.displayName} />
-          <DropDown>
-            <span onClick={handleLogOut}>Sign Out</span>
-          </DropDown>
-        </SignOut>
+        {pathname !== '/' ? (
+          <SignOut>
+            <UserImg src={userData.photoURL} alt={userData.displayName} />
+            <DropDown>
+              <span onClick={handleLogOut}>Sign Out</span>
+            </DropDown>
+          </SignOut>
+        ) : null}
+      </NavWrapper>
+      {modal ? (
+        <SignModal
+          setModal={setModal}
+          handleAuth={handleAuth}
+          auth={auth}
+          setUserData={setUserData}
+        />
       ) : null}
-    </NavWrapper>
+    </>
   )
 }
 
